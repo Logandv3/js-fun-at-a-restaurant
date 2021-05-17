@@ -13,16 +13,6 @@ function createRestaurant(restaurant) {
 };
 
 
-// function addMenuItem(restaurantName, newItemName) {
-//   if (newItemName.type === "lunch") {
-//     return restaurantName.menus.lunch.push(newItemName);
-//   } else if (newItemName.type === "breakfast"){
-//     return restaurantName.menus.breakfast.push(newItemName);
-//   } else {
-//     return restaurantName.menus.dinner.push(newItemName);
-//   };
-//
-// };
 
 function addMenuItem(restaurantName, newItemName) {
   if (newItemName.type === "lunch" && !restaurantName.menus.lunch.includes(newItemName)) {
@@ -37,18 +27,18 @@ function addMenuItem(restaurantName, newItemName) {
   return restaurantName;
 };
 
+
+
 function removeMenuItem(restaurantName, name, type) {
-  if (restaurantName.menus[type].length === 0) {
-    return `Sorry, we don't sell ${name}, try adding a new recipe!`;
-  } else {
+  if (restaurantName.menus[type] !== undefined) {
     for (var i = 0; i < restaurantName.menus[type].length; i++) {
       restaurantName.menus[type].splice(i,1);
       return `No one is eating our ${name} - it has been removed from the ${type} menu!`;
     }
   }
+  if (!restaurantName.menus[type].includes(name))
+  return `Sorry, we don't sell ${name}, try adding a new recipe!`;
 }
-
-
 
 
 
